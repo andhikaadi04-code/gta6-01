@@ -1,61 +1,52 @@
-// Every tuning number and colour in one place. The playfield is a fixed 1280x720 logical area;
-// the renderer scales it to the window, so no rule below depends on the screen size.
-
-export const FIELD = { width: 1280, height: 720, groundY: 664 };
-
-/** The simulation's fixed step, in seconds: 60 updates a second whatever the display's rate. */
-export const STEP = 1 / 60;
-
-export const PLAYER = {
-  width: 72,
-  height: 24,
-  speed: 560,
-  invulnerable: 1.5,
+// Shared constants for SOLMAR BAY. One job: numbers and colours, nothing else.
+export const CONFIG = {
+  // City layout
+  BLOCK: 40,
+  ROAD_W: 12,
+  GRID: 7,
+  CITY_HALF: 180,
+  // Player
+  PLAYER_WALK_SPEED: 5,
+  PLAYER_RUN_SPEED: 9,
+  PLAYER_JUMP: 6,
+  PLAYER_HEALTH: 100,
+  // Cars
+  CAR_MAX_SPEED: 28,
+  CAR_ACCEL: 14,
+  CAR_BRAKE: 26,
+  CAR_REVERSE_MAX: 10,
+  CAR_TURN: 1.9,
+  // Wanted / police
+  WANTED_MAX: 5,
+  WANTED_DECAY_SECONDS: 8,
+  BUST_FINE: 200,
+  // Money
+  MONEY_START: 250,
+  // Save
+  SAVE_KEY: 'solmar-bay-save-v1',
+  // Shots
+  SHOT_SETTLE_MS: 6000,
 };
 
-export const LIVES = 3;
-
-export const BLOCK = {
-  minWidth: 40,
-  maxWidth: 110,
-  height: 36,
-  speed: 240,
-  speedPerLevel: 30,
-  speedJitter: 90,
-  interval: 0.55,
-  intervalScale: 0.88,
-  minInterval: 0.14,
-  dodgePoints: 1,
-};
-
-export const COIN = {
-  size: 24,
-  speed: 190,
-  speedPerLevel: 14,
-  interval: 1.4,
-  intervalJitter: 0.8,
-  points: 10,
-};
-
-/** Seconds of play per level, and the last level: speeds and spawn rates stop growing there. */
-export const LEVEL = { seconds: 12, max: 12 };
-
-/** How many falling things can exist at once; the pool is allocated once, at boot. */
-export const POOL_SIZE = 64;
-
+// Sun-soaked palette: warm pastels for buildings, bright cars, deep ocean.
 export const PALETTE = {
-  backdrop: '#11141b',
-  sky: '#1b1f2a',
-  ground: '#2a3040',
-  player: '#4fc3f7',
-  block: '#e5534b',
-  coin: '#f2c94c',
-  panel: '#252b38',
-  text: '#eef1f5',
-  muted: '#8b93a3',
+  buildings: [
+    0xf2e3c6, // cream
+    0xe08a5a, // terracotta
+    0x5fa8a0, // teal
+    0xe86a6a, // coral
+    0xe8d29a, // sand
+    0x9db8c4, // pale blue
+    0xd9a441, // ochre
+    0xc96f8e, // dusty rose
+  ],
+  cars: [0xd23c2e, 0xf2c230, 0x2e6fd2, 0xf2f2f2, 0x222222, 0x2ea88a, 0x7a4fd0],
+  asphalt: 0x3a3f46,
+  sidewalk: 0xbfb49a,
+  sand: 0xe8d5a8,
+  ocean: 0x2e7f9e,
+  grass: 0x7fae5a,
+  palmTrunk: 0x8a6b46,
+  palmLeaf: 0x3f8f4f,
+  lampHead: 0xffe9a8,
 };
-
-export const FONT = 'system-ui, -apple-system, "Segoe UI", sans-serif';
-
-/** Where the best score is kept between visits (this browser only). */
-export const BEST_KEY = 'block-dodger.best';
